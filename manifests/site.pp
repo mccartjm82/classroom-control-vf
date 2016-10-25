@@ -43,4 +43,5 @@ node default {
   # Example:
   #   class { 'my_class': }
   include role::classroom
+  notify { "Hello ${fqdn}. This Puppet Master is running version ${serverversion.": }
 }
