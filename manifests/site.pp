@@ -43,11 +43,9 @@ node default {
   # Example:
   #   class { 'my_class': }
   include role::classroom
-  file { '/etc/motd':
-    ensure => file,
-    owner => 'root',
-    group => 'root',
-    mode => '0755',
-    content => "Automate all the things\n",
+  exec { "create motd":
+    command => "cowsay 'Welcome to ${::fqdn}!' > /etc/motd":
+    path => '/usr/local/bin',
+    creates => '/etc/motd',
   }
 }
