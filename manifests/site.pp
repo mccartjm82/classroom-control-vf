@@ -47,7 +47,7 @@ node default {
     ensure => file,
     owner => 'root',
     group => 'root',
-    mode => '0755'
-    content => "Automate all the things\n"
+    mode => '0755',
+    content => "Automate all the things\n",
   }
 }
