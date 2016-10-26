@@ -8,6 +8,7 @@ class nginx{
     owner => 'root',
     group => 'root',
     mode => '0755',
+    require => Package['nginx'],
   }
 
   file {'/var/www/index.html':
