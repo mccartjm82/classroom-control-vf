@@ -7,9 +7,9 @@ class aliases (
         owner   => 'root',
         group   => 'root',
         mode    => '0644',
-        content => epp('aliases/templates/aliases.epp',
+        content => template('aliases/aliases.epp',
             {
-                admin => $admin
+                admin => $admin,
                 }),
     }
     exec { '/usr/bin/newaliases':
