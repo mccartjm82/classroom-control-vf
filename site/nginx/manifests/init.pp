@@ -48,12 +48,9 @@ class nginx {
     source => 'puppet:///modules/nginx/index.html',
   }
 
-  file { "${confdir}/conf.d/default.conf":
-    source  => 'puppet:///modules/nginx/default.conf',
-  }
+
 
   file { "${confdir}/nginx.conf":
-    source  => 'puppet:///modules/nginx/nginx.conf',
     content => epp('nginx/nginx.conf.epp',
       {
         user => $user,
@@ -62,6 +59,14 @@ class nginx {
         }),
     notify => Service['nginx'],
 }
+
+  file { "${confdir}/conf.d/default.conf":
+    content => epp('nginx/default.conf.epp',
+      {
+        docroot => $docroot,
+      }),
+    notify => Service['nginx'],
+  }
 
   service { 'nginx':
     ensure    => running,
