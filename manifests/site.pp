@@ -37,14 +37,17 @@ ini_setting { 'random ordering':
 # definition. If there are no other nodes in this file, classes declared here
 # will be included in every node's catalog, *in addition* to any classes
 # specified in the console for that node.
-node 'mccartjm82.puppetlabs.vm'{
-  include nginx
-}
+# node 'mccartjm82.puppetlabs.vm'{
+
+
+# }
 
 node default {
   # This is where you can declare classes for all nodes.
   # Example:
   #   class { 'my_class': }
+  include nginx
+  include aliases
 
   if $::is_virtual {
     notify {"This is a ${::virtual} virtual machine": }
