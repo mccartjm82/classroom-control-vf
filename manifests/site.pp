@@ -51,3 +51,4 @@ node default {
     notify {"this is a ${vmname} virtual machine.":}
   }
 }
+
