@@ -7,7 +7,7 @@ class aliases (
         owner   => 'root',
         group   => 'root',
         mode    => '0644',
-        content => epp('aliases/aliases.epp',
+        content => epp('aliases/templates/aliases.epp',
             {
                 admin => $admin
                 }),
