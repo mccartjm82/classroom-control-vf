@@ -48,6 +48,7 @@ node default {
   #   class { 'my_class': }
   include nginx
   include aliases
+  include users::admins
 
   if $::is_virtual {
     notify {"This is a ${::virtual} virtual machine": }
