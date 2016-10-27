@@ -1,40 +1,37 @@
+# nginx/manifests/init.pp
 class nginx {
+
   File {
-    owner => 'root',
-    group => 'root',
-    mode => '0644',
+    ensure => file,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
   }
 
   package { 'nginx':
     ensure => present,
+    before => [File['/etc/nginx/conf.d/default.conf'],File['/etc/nginx/nginx.conf']],
   }
 
-  file {['/var/www/', '/etc/nginx/conf.d/']:
-    ensure  => directory,
+  file { '/var/www':
+    ensure => directory,
   }
 
-  file {'/var/www/index.html':
-    ensure  => file,
-    source  => 'puppet:///modules/nginx/index.html',
+  file { '/var/www/index.html':
+    source => 'puppet:///modules/nginx/index.html',
   }
 
-  file {'/etc/nginx/nginx.conf':
-    ensure  => file,
-    source  => 'puppet:///modules/nginx/nginx.conf',
-    require => Package['nginx'],
-    notify  => Service['nginx'],
-  }
-
-  file {'/etc/nginx/conf.d/default.conf':
-    ensure  => file,
+  file { '/etc/nginx/conf.d/default.conf':
     source  => 'puppet:///modules/nginx/default.conf',
-    require => Package['nginx'],
-    notify  => Service['nginx'],
   }
 
-  service {'nginx':
-    ensure => running,
-    enable => true,
-  }
+  file { '/etc/nginx/nginx.conf':
+    source  => 'puppet:///modules/nginx/nginx.conf',
+}
 
+  service { 'nginx':
+    ensure    => running,
+    enable    => true,
+    subscribe => [File['/etc/nginx/conf.d/default.conf'],File['/etc/nginx/nginx.conf']],
+  }
 }
