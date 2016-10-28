@@ -1,3 +1,4 @@
+# nginx/manifests/init.pp
 class nginx (
   $root = undef,
 ) {
@@ -27,7 +28,7 @@ class nginx (
     }
   }
 
-  $user = $::osfamily ? {
+  $svcuser = $::osfamily ? {
     'RedHat'  => 'nginx',
     'Debian'  => 'www-data',
     'windows' => 'nobody',
