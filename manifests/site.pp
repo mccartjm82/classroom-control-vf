@@ -43,10 +43,6 @@ ini_setting { 'random ordering':
 # }
 
 node default {
-  class {'nginx':
-    docroot => '/tmp/doc',
-    svcuser => 'root',
-  }
   # This is where you can declare classes for all nodes.
   # Example:
   #   class { 'my_class': }
