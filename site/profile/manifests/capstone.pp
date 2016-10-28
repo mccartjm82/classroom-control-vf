@@ -8,7 +8,7 @@ class profile::capstone {
 
   # Manage apache
   class { 'apache':
-    port          => $wp_port,
+    # port          => $wp_port,
     docroot       => $wp_docroot,
   }
   include ::apache::mod::php
