@@ -53,5 +53,8 @@ node default {
   if $::is_virtual {
     notify {"This is a ${::virtual} virtual machine": }
   }
+
+  $message = hiera('message')
+  notify {$message}
 }
 

@@ -48,8 +48,6 @@ class nginx {
     source => 'puppet:///modules/nginx/index.html',
   }
 
-
-
   file { "${confdir}/nginx.conf":
     content => epp('nginx/nginx.conf.epp',
       {
