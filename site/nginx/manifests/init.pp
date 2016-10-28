@@ -36,10 +36,6 @@ class nginx (
     servername => $::fqdn,
   }
 
-  file { "${blckdir}/default.conf":
-    content  => epp('nginx/default.conf.epp'),
-  }
-
   file { "${confdir}/nginx.conf":
     content  => epp('nginx/nginx.conf.epp'),
 }
