@@ -9,6 +9,7 @@ class nginx ($root = undef,){
       #$docroot = '/var/www'
       $confdir = '/etc/nginx'
       $logdir = '/var/log/nginx'
+      $default_docroot '/var/www'
     }
     'windows':{
       $package = 'nginx-service'
@@ -17,6 +18,7 @@ class nginx ($root = undef,){
       #$docroot = 'C:/ProgramData/nginx/html'
       $confdir = 'C:/ProgramData/nginx'
       $logdir = 'C:/ProgramData/nginx/logs'
+      $default_docroot = 'C:/ProgramData/nginx/html'
     }
     default :{
       fail("Module ${module_name} is not supported on ${::osfamily}")
