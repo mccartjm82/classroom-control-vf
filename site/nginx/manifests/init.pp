@@ -1,20 +1,21 @@
 # nginx/manifests/init.pp
 class nginx {
 
+  $root = undef,
   case $::osfamily{
     'redhat','debian':{
       $package = 'nginx'
       $owner = 'root'
       $group = 'root'
-      $docroot = '/var/www'
+      #$docroot = '/var/www'
       $confdir = '/etc/nginx'
       $logdir = '/var/log/nginx'
     }
     'windows':{
-      $package = 'nginx'
+      $package = 'nginx-service'
       $owner = 'administrator'
       $group = 'administrator'
-      $docroot = 'C:/ProgramData/nginx/html'
+      #$docroot = 'C:/ProgramData/nginx/html'
       $confdir = 'C:/ProgramData/nginx'
       $logdir = 'C:/ProgramData/nginx/logs'
     }
@@ -27,6 +28,11 @@ class nginx {
     'redhat' => 'nginx',
     'debian' => 'www-data',
     'windows' => 'nobody',
+  }
+
+  $docroot = $root ?{
+    undef => $default_docroot,
+    default => $root,
   }
 
   File {
