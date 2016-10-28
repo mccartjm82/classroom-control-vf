@@ -10,10 +10,6 @@ class nginx (
   $svcname = $nginx::params::svcname,
   $svcuser = $nginx::params::svcuser,
 ) inherits nginx::params {
-  $docroot = $root ? {
-    undef   => $default_docroot,
-    default => $root,
-  }
 
   File {
     ensure => file,
