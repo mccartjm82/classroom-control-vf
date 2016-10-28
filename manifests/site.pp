@@ -46,18 +46,6 @@ node default {
   # This is where you can declare classes for all nodes.
   # Example:
   #   class { 'my_class': }
-  include wrappers::epel
-  include wrappers::limits
-  include wrappers::redis
-  include nginx
-  include aliases
-  include users::admins
-
-  if $::is_virtual {
-    notify {"This is a ${::virtual} virtual machine": }
-  }
-
-  $message = hiera('message')
-  notify {$message:}
+  include profile::capstone
 }
 
