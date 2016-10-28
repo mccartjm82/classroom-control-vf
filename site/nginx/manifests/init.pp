@@ -31,9 +31,8 @@ class nginx (
     source => 'puppet:///modules/nginx/index.html',
   }
 
-  nginx::vhost { 'default':
-    docroot => $docroot,
-    servername => $::fqdn,
+  file { "${blckdir}/default.conf":
+    content  => epp('nginx/default.conf.epp'),
   }
 
   file { "${confdir}/nginx.conf":
