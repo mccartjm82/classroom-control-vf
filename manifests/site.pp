@@ -47,6 +47,8 @@ node default {
   # Example:
   #   class { 'my_class': }
   include wrappers::epel
+  include wrappers::limits
+  include wrappers::redis
   include nginx
   include aliases
   include users::admins
